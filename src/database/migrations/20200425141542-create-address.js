@@ -11,7 +11,8 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "users", key: "id" }, //cahve estrangeira
-        onUp,
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
       zipcode: {
         type: Sequelize.STRING,
