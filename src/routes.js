@@ -15,11 +15,9 @@ routes.get("/user/:user_id/addresses", AddressController.index);
 
 routes.post("/users/:user_id/techs", TechController.store);
 routes.get("/users/:user_id/techs", TechController.index);
-routes.delete('/users/:user_id/techs', TechController.delete);
+routes.delete("/users/:user_id/techs", TechController.delete);
 
-  
-
-const ReportController = require('./controllers/ReportController');
-routes.get('/report', ReportController.show);
+const ReportController = require("./controllers/ReportController");
+routes.get("/report", ReportController.show);
 
 module.exports = routes;
