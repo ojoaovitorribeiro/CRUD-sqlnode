@@ -10,7 +10,7 @@ module.exports = {
       user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: "users", key: "id" }, //cahve estrangeira
+        references: { model: "users", key: "id" }, //chave estrangeira
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
@@ -36,7 +36,6 @@ module.exports = {
       },
     });
   },
-
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable("addresses");
   },

@@ -7,6 +7,7 @@ module.exports = {
 
     return res.json(user);
   },
+  
   async index(req, res) {
     const users = await User.findAll();
 

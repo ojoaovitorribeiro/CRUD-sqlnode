@@ -1,4 +1,3 @@
-// const Address = require("../models/Address");
 const User = require("../models/User");
 const Tech = require("../models/Tech");
 
@@ -17,24 +16,44 @@ module.exports = {
       where: { name },
     });
 
-    await user.addTech(tech); //O PROBLEMA É AQUI, ESSE COISA NÃO FUNCIONA
+    await user.addTech(tech);
 
     return res.json(tech);
   },
 
-  async index(req, res) {
+  async delete(req, res) {
     const { user_id } = req.params;
+    const { name } = req.body;
 
-    const user = await User.findByPk(user_id, {
-      include: {
-        association: "techs",
-        attributes: ["name"],
-        through: {
-          attributes: [],
-        },
-      },
+    const user = await User.findByPk(user_id);
+
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
+
+    const tech = await Tech.findOne({
+      where: { name },
     });
 
-    return res.json(user.techs);
+    await user.removeTech(tech);
+
+    return res.json();
   },
+
+async index(req, res) {
+  const { user_id } = req.params;
+
+  const user = await User.findByPk(user_id, {
+    include: {
+      association: "techs",
+      attributes: ["name"],
+      through: {
+        attributes: [],
+      },
+    },
+  });
+
+  return res.json(user.techs);
+},
+
 };

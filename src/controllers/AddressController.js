@@ -16,6 +16,7 @@ module.exports = {
 
     return res.json(address);
   },
+
   async index(req, res) {
     const { user_id } = req.params;
 
